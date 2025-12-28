@@ -1,0 +1,581 @@
+/* Penuel Stopover - Admin Dashboard Styles */
+
+:root {
+    --success: #198754;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --border: #dee2e6;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   ADMIN CONTAINER
+   ======================================== */
+
+.admin-container {
+    min-height: 100vh;
+}
+
+/* ========================================
+   AUTHENTICATION SCREEN
+   ======================================== */
+
+.auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1f36 0%, #0d0f1f 100%);
+}
+
+.auth-card {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-header {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1.5rem;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.auth-header p {
+    margin-bottom: 0;
+}
+
+.auth-form {
+    margin-top: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-label {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.5rem;
+}
+
+.auth-form .form-control {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.auth-form .form-control:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+.auth-form .btn {
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.75rem;
+}
+
+/* ========================================
+   ADMIN DASHBOARD
+   ======================================== */
+
+.admin-dashboard {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.admin-dashboard.d-none {
+    display: none !important;
+}
+
+.admin-content {
+    padding: 2rem 0;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+#logout-btn {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   TAB NAVIGATION
+   ======================================== */
+
+.nav-tabs {
+    border-bottom: 2px solid var(--border);
+    background: white;
+    padding: 0 1rem;
+    border-radius: 8px 8px 0 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d;
+    border: none;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--success);
+    border-bottom: 2px solid var(--success);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--success);
+    background-color: transparent;
+    border-bottom: 3px solid var(--success);
+}
+
+/* ========================================
+   TAB CONTENT
+   ======================================== */
+
+.tab-content {
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.tab-pane {
+    min-height: 400px;
+}
+
+.content-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.content-header h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+/* ========================================
+   ITEMS LIST / EDITOR ROWS
+   ======================================== */
+
+.items-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.item-row {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.item-row:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--success);
+}
+
+.item-name {
+    font-weight: 600;
+    color: #212529;
+    font-size: 1rem;
+}
+
+.item-row .form-control {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.item-row .form-control:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+.item-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.item-status .form-check-input {
+    width: 1.25em;
+    height: 1.25em;
+    cursor: pointer;
+    border-color: var(--border);
+}
+
+.item-status .form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.status-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-active {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+}
+
+.status-inactive {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* ========================================
+   SETTINGS SECTION
+   ======================================== */
+
+.settings-form {
+    max-width: 800px;
+}
+
+.settings-section {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.settings-section h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.settings-section .form-label {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.5rem;
+}
+
+.settings-section .form-control,
+.settings-section .form-select {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem;
+}
+
+.settings-section .form-control:focus,
+.settings-section .form-select:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+.form-check-label {
+    color: #555;
+    font-weight: 500;
+}
+
+.badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+/* Hours Editor */
+.hours-editor-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.hours-editor-row .form-label {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.hours-editor-row .form-control {
+    padding: 0.5rem 0.75rem;
+}
+
+/* ========================================
+   SAVE SECTION
+   ======================================== */
+
+.save-section {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--success);
+}
+
+.save-section .btn {
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: var(--transition);
+}
+
+.save-section .btn-success {
+    min-width: 250px;
+}
+
+.save-section .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+#save-all-btn {
+    background: linear-gradient(135deg, var(--success) 0%, #157347 100%);
+    border: none;
+}
+
+#save-all-btn:hover {
+    background: linear-gradient(135deg, #157347 0%, #0d3f24 100%);
+}
+
+/* ========================================
+   LOADING & ALERTS
+   ======================================== */
+
+.spinner-border {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.alert {
+    border-radius: 6px;
+    border: none;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-left: 4px solid #dc3545;
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #ff9800;
+    border-left: 4px solid #ff9800;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .item-row {
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .auth-card {
+        margin: 1rem;
+        padding: 2rem;
+    }
+
+    .item-row {
+        grid-template-columns: 1fr 1fr auto;
+        gap: 0.75rem;
+    }
+
+    .item-name {
+        grid-column: 1 / -1;
+    }
+
+    .hours-editor-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .settings-section {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 1rem 0;
+    }
+
+    .nav-tabs {
+        padding: 0;
+        overflow-x: auto;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .tab-content {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .item-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .item-row > * {
+        width: 100%;
+    }
+
+    .save-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .save-section .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .save-section .btn-success {
+        min-width: unset;
+    }
+
+    #discard-btn {
+        margin-left: 0 !important;
+    }
+
+    .hours-editor-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 1.5rem;
+        margin: 1rem;
+        max-width: 100%;
+    }
+
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-header {
+        padding-bottom: 1rem;
+    }
+
+    .tab-content {
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .content-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .item-row {
+        padding: 1rem;
+    }
+
+    .item-name {
+        font-size: 0.9rem;
+    }
+
+    .item-row .form-control {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .settings-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .settings-section h5 {
+        font-size: 1rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    #user-info {
+        font-size: 0.85rem !important;
+    }
+
+    #logout-btn {
+        padding: 0.35rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+}

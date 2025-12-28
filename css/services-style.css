@@ -1,0 +1,742 @@
+/* Penuel Stopover - Services Page Styles */
+
+:root {
+    --success: #198754;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --border: #dee2e6;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   PAGE HEADER STYLING
+   ======================================== */
+
+.container-xxl.py-5.bg-dark {
+    background: linear-gradient(135deg, #1a1f36 0%, #0d0f1f 100%);
+    padding: 4rem 0 !important;
+}
+
+.container-xxl.py-5.bg-dark h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.container-xxl.py-5.bg-dark p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   SECTION STYLING
+   ======================================== */
+
+#service-bay-unit,
+#car-wash-unit {
+    padding: 4rem 0;
+}
+
+#service-bay-unit {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+}
+
+#car-wash-unit {
+    background: var(--light);
+}
+
+#service-bay-unit h2,
+#car-wash-unit h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+#service-bay-unit h2::after,
+#car-wash-unit h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--success), #157347);
+    border-radius: 2px;
+}
+
+#service-bay-unit p,
+#car-wash-unit p {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* ========================================
+   FILTER BUTTONS
+   ======================================== */
+
+.btn-group {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-outline-success {
+    color: var(--success);
+    border-color: var(--success);
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    transition: var(--transition);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-outline-success:hover {
+    background: var(--success);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-outline-success.active {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+    box-shadow: var(--shadow);
+}
+
+/* ========================================
+   SERVICE CARD STYLING
+   ======================================== */
+
+.service-card,
+.wash-package-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before,
+.wash-package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--success), #157347);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.service-card:hover,
+.wash-package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--success);
+}
+
+.service-card:hover::before,
+.wash-package-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Service Card Header */
+.service-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.service-icon {
+    font-size: 2rem;
+    color: var(--success);
+    flex-shrink: 0;
+}
+
+.service-header h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212529;
+    margin: 0;
+}
+
+.service-category {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+/* Service Description */
+.service-description {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+/* Service Features List */
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.service-features li {
+    padding: 0.5rem 0;
+    padding-left: 1.75rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Service Footer - Pricing & Action */
+.service-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.service-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--success);
+    letter-spacing: -0.5px;
+}
+
+.service-price-label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+}
+
+.service-time {
+    font-size: 0.85rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.service-time i {
+    color: var(--success);
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-open {
+    background: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.status-busy {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ff9800;
+    border: 1px solid #ff9800;
+}
+
+.status-closed {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* ========================================
+   WASH PACKAGE CARD STYLING
+   ======================================== */
+
+.wash-package-card {
+    text-align: center;
+    padding: 2.5rem 2rem;
+}
+
+.wash-package-icon {
+    font-size: 3rem;
+    color: var(--success);
+    margin-bottom: 1rem;
+}
+
+.wash-package-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 0.75rem;
+}
+
+.wash-package-subtitle {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+.wash-features {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.wash-features li {
+    padding: 0.5rem 0;
+    padding-left: 1.75rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.wash-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+.package-price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--success);
+    margin: 1.5rem 0 1rem;
+}
+
+.package-duration {
+    font-size: 0.85rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.package-duration i {
+    color: var(--success);
+}
+
+/* ========================================
+   INFO CARD STYLING
+   ======================================== */
+
+.info-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--success);
+}
+
+.info-card i {
+    font-size: 2.5rem;
+    display: block;
+}
+
+.info-card h4 {
+    font-weight: 700;
+    color: #212529;
+    margin: 1rem 0;
+}
+
+.info-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   LOADING & EMPTY STATES
+   ======================================== */
+
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--light);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-text {
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   AI CHAT WIDGET SECTION
+   ======================================== */
+
+#ai-chat-widget {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.chat-header {
+    background: linear-gradient(135deg, var(--success) 0%, #157347 100%);
+    padding: 1.25rem;
+    color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-header h5 {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.chat-header small {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+}
+
+.chat-messages {
+    height: 250px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message p {
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--success);
+    max-width: 85%;
+    word-wrap: break-word;
+    box-shadow: var(--shadow-sm);
+}
+
+.user-message {
+    text-align: right;
+}
+
+.user-message p {
+    background: linear-gradient(135deg, var(--success), #157347);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    max-width: 85%;
+    word-wrap: break-word;
+    display: inline-block;
+    box-shadow: var(--shadow-sm);
+}
+
+.chat-input-group {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input-group input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.chat-input-group input:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.1);
+    outline: none;
+}
+
+/* ========================================
+   FOOTER STYLING
+   ======================================== */
+
+footer {
+    background: linear-gradient(135deg, #1a1f36 0%, #0d0f1f 100%);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+footer a:hover {
+    color: var(--success);
+    transform: translateX(5px);
+    display: inline-block;
+}
+
+footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+.btn-link {
+    padding: 0.5rem 0 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.btn-link:hover {
+    color: var(--success) !important;
+    text-decoration: none;
+}
+
+/* ========================================
+   BACK TO TOP BUTTON
+   ======================================== */
+
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background: var(--success);
+    color: white;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 99;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.back-to-top:hover {
+    background: #157347;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.show {
+    display: block;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .container-xxl.py-5.bg-dark h1 {
+        font-size: 1.75rem;
+    }
+
+    #service-bay-unit h2,
+    #car-wash-unit h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-group {
+        gap: 0.25rem;
+    }
+
+    .btn-outline-success {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .service-card,
+    .wash-package-card {
+        padding: 1.5rem;
+    }
+
+    .service-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .service-icon {
+        font-size: 1.75rem;
+    }
+
+    .service-price {
+        font-size: 1.2rem;
+    }
+
+    .wash-package-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .package-price {
+        font-size: 1.4rem;
+    }
+
+    .chat-messages {
+        height: 200px;
+    }
+
+    footer {
+        padding: 2rem 0 1rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-xxl.py-5.bg-dark {
+        padding: 2rem 0 !important;
+    }
+
+    .container-xxl.py-5.bg-dark h1 {
+        font-size: 1.5rem;
+    }
+
+    #service-bay-unit,
+    #car-wash-unit {
+        padding: 2rem 0;
+    }
+
+    #service-bay-unit h2,
+    #car-wash-unit h2 {
+        font-size: 1.25rem;
+    }
+
+    .btn-outline-success {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .service-card,
+    .wash-package-card {
+        padding: 1.25rem;
+    }
+
+    .service-icon {
+        font-size: 1.5rem;
+    }
+
+    .service-price {
+        font-size: 1rem;
+    }
+
+    .wash-package-icon {
+        font-size: 2rem;
+    }
+
+    .package-price {
+        font-size: 1.2rem;
+    }
+
+    .chat-messages {
+        height: 150px;
+    }
+
+    .back-to-top {
+        width: 35px;
+        height: 35px;
+        right: 15px;
+        bottom: 15px;
+    }
+}

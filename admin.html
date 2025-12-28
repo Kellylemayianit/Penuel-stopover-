@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penuel Stopover - Admin Dashboard</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+
+<body>
+    <div class="container-fluid admin-container">
+
+        <!-- ========================================
+             HEADER & AUTHENTICATION
+             ======================================== -->
+        <div id="auth-screen" class="auth-wrapper">
+            <div class="auth-card">
+                <div class="auth-header text-center mb-4">
+                    <h1 class="text-success"><i class="fas fa-lock me-3"></i>Admin Access</h1>
+                    <p class="text-muted">Enter your credentials to access the management dashboard</p>
+                </div>
+
+                <form id="auth-form" class="auth-form">
+                    <div class="form-group mb-3">
+                        <label for="auth-username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="auth-username" placeholder="Enter username" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="auth-password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="auth-password" placeholder="Enter password" required>
+                    </div>
+
+                    <div id="auth-error" class="alert alert-danger d-none" role="alert"></div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ========================================
+             ADMIN DASHBOARD (Hidden until auth)
+             ======================================== -->
+        <div id="admin-dashboard" class="admin-dashboard d-none">
+
+            <!-- Navbar -->
+            <nav class="navbar navbar-dark bg-dark sticky-top">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">
+                        <i class="fas fa-paw me-2"></i>Penuel Stopover Admin
+                    </span>
+                    <div class="d-flex align-items-center">
+                        <span class="text-light me-3" id="user-info">Manager</span>
+                        <button id="logout-btn" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="admin-content">
+                <div class="container-fluid">
+
+                    <!-- Tabs Navigation -->
+                    <ul class="nav nav-tabs mb-4 mt-4" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="restaurant-tab" data-bs-toggle="tab" data-bs-target="#restaurant-content" type="button" role="tab">
+                                <i class="fas fa-utensils me-2"></i>Restaurant
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="supermarket-tab" data-bs-toggle="tab" data-bs-target="#supermarket-content" type="button" role="tab">
+                                <i class="fas fa-shopping-cart me-2"></i>Supermarket
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="service-tab" data-bs-toggle="tab" data-bs-target="#service-content" type="button" role="tab">
+                                <i class="fas fa-tools me-2"></i>Service Bay
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="wash-tab" data-bs-toggle="tab" data-bs-target="#wash-content" type="button" role="tab">
+                                <i class="fas fa-water me-2"></i>Car Wash
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-content" type="button" role="tab">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Contents -->
+                    <div class="tab-content">
+
+                        <!-- Restaurant Tab -->
+                        <div class="tab-pane fade show active" id="restaurant-content" role="tabpanel">
+                            <div class="content-header mb-4">
+                                <h4><i class="fas fa-utensils text-success me-2"></i>Restaurant Menu Management</h4>
+                            </div>
+                            <div id="restaurant-items" class="items-list">
+                                <!-- Items will be dynamically injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Supermarket Tab -->
+                        <div class="tab-pane fade" id="supermarket-content" role="tabpanel">
+                            <div class="content-header mb-4">
+                                <h4><i class="fas fa-shopping-cart text-success me-2"></i>Supermarket Products Management</h4>
+                            </div>
+                            <div id="supermarket-items" class="items-list">
+                                <!-- Items will be dynamically injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Service Bay Tab -->
+                        <div class="tab-pane fade" id="service-content" role="tabpanel">
+                            <div class="content-header mb-4">
+                                <h4><i class="fas fa-tools text-success me-2"></i>Service Bay Management</h4>
+                            </div>
+                            <div id="service-items" class="items-list">
+                                <!-- Items will be dynamically injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Car Wash Tab -->
+                        <div class="tab-pane fade" id="wash-content" role="tabpanel">
+                            <div class="content-header mb-4">
+                                <h4><i class="fas fa-water text-success me-2"></i>Car Wash Packages Management</h4>
+                            </div>
+                            <div id="wash-items" class="items-list">
+                                <!-- Items will be dynamically injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane fade" id="settings-content" role="tabpanel">
+                            <div class="content-header mb-4">
+                                <h4><i class="fas fa-cog text-success me-2"></i>Business Settings</h4>
+                            </div>
+
+                            <div class="settings-form">
+                                <!-- Contact Information -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Contact Information</h5>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="setting-phone" placeholder="+254 XXX XXX XXX">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="setting-email" placeholder="info@penuelstopover.com">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Operating Hours -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Operating Hours</h5>
+                                    <div id="hours-editor"></div>
+                                </div>
+
+                                <!-- System Status -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">System Status</h5>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="maintenance-mode" checked>
+                                        <label class="form-check-label" for="maintenance-mode">
+                                            Business Status: <span id="status-text" class="badge bg-success">OPEN</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="save-section mt-5 mb-5">
+                        <button id="save-all-btn" class="btn btn-success btn-lg">
+                            <i class="fas fa-save me-2"></i>Save All Changes
+                        </button>
+                        <button id="discard-btn" class="btn btn-outline-secondary btn-lg ms-2">
+                            <i class="fas fa-undo me-2"></i>Discard Changes
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Admin Scripts -->
+    <script src="admin-script.js"></script>
+     <div id="penuel-chat-container">
+            <button id="penuel-chat-btn" title="Chat with Penuel Assistant">💬</button>
+            <div id="penuel-chat-window" class="penuel-chat-hidden">
+                <div class="penuel-chat-header">
+                    <span><i class="fas fa-comments"></i>Penuel Assistant</span>
+                    <button id="penuel-chat-close">×</button>
+                </div>
+                <div id="penuel-chat-messages">
+                    <div class="penuel-chat-msg penuel-chat-bot">
+                        👋 Welcome to Penuel Stopover! How can I help you today?
+                    </div>
+                </div>
+                <div class="penuel-chat-input-wrapper">
+                    <input type="text" id="penuel-chat-input" placeholder="Ask a question..." autocomplete="off" />
+                    <button id="penuel-chat-send">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="css/chat-widget.css" />
+        <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

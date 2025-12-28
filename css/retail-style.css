@@ -1,0 +1,622 @@
+/* Penuel Stopover - Retail Page Styles */
+
+:root {
+    --success: #198754;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --border: #dee2e6;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   PAGE HEADER STYLING
+   ======================================== */
+
+.container-xxl.py-5.bg-dark {
+    background: linear-gradient(135deg, #1a1f36 0%, #0d0f1f 100%);
+    padding: 4rem 0 !important;
+}
+
+.container-xxl.py-5.bg-dark h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.container-xxl.py-5.bg-dark p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   SECTION STYLING
+   ======================================== */
+
+#restaurant-unit,
+#supermarket-unit {
+    padding: 4rem 0;
+}
+
+#restaurant-unit {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+}
+
+#supermarket-unit {
+    background: var(--light);
+}
+
+#restaurant-unit h2,
+#supermarket-unit h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+#restaurant-unit h2::after,
+#supermarket-unit h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--success), #157347);
+    border-radius: 2px;
+}
+
+#restaurant-unit p,
+#supermarket-unit p {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* ========================================
+   FILTER BUTTONS
+   ======================================== */
+
+.btn-group {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-outline-success {
+    color: var(--success);
+    border-color: var(--success);
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    transition: var(--transition);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-outline-success:hover {
+    background: var(--success);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-outline-success.active {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+    box-shadow: var(--shadow);
+}
+
+/* ========================================
+   PRODUCT/MENU CARD STYLING
+   ======================================== */
+
+.menu-card,
+.retail-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.menu-card:hover,
+.retail-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--success);
+}
+
+.menu-card::before,
+.retail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--success), #157347);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.menu-card:hover::before,
+.retail-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Card Image Container */
+.card-img-container {
+    position: relative;
+    width: 100%;
+    padding-top: 66.67%; /* 3:2 Aspect Ratio */
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--light) 0%, #e9ecef 100%);
+}
+
+.card-img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.menu-card:hover .card-img-container img,
+.retail-card:hover .card-img-container img {
+    transform: scale(1.05);
+}
+
+.placeholder-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(25, 135, 84, 0.2);
+    width: 100%;
+    height: 100%;
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 0.5rem;
+    min-height: 2.2em;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    flex: 1;
+    line-height: 1.5;
+}
+
+.card-category {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+/* Card Footer - Pricing & Details */
+.card-footer {
+    padding: 1rem 1.5rem;
+    background: var(--light);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card-price {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--success);
+    letter-spacing: -0.5px;
+}
+
+.card-price-label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+}
+
+/* Availability Badge */
+.badge-stock {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-in-stock {
+    background: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.badge-out-of-stock {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.badge-low-stock {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ff9800;
+    border: 1px solid #ff9800;
+}
+
+/* ========================================
+   LOADING & EMPTY STATES
+   ======================================== */
+
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--light);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-text {
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   AI CHAT WIDGET SECTION
+   ======================================== */
+
+#ai-chat-widget {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, var(--success) 0%, #157347 100%);
+    padding: 1.25rem;
+    color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-header h5 {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.chat-header small {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+}
+
+.chat-messages {
+    height: 250px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message p {
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--success);
+    max-width: 85%;
+    word-wrap: break-word;
+    box-shadow: var(--shadow-sm);
+}
+
+.user-message {
+    text-align: right;
+}
+
+.user-message p {
+    background: linear-gradient(135deg, var(--success), #157347);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    max-width: 85%;
+    word-wrap: break-word;
+    display: inline-block;
+    box-shadow: var(--shadow-sm);
+}
+
+.chat-input-group {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input-group input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.chat-input-group input:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.1);
+    outline: none;
+}
+
+/* ========================================
+   FOOTER STYLING
+   ======================================== */
+
+footer {
+    background: linear-gradient(135deg, #1a1f36 0%, #0d0f1f 100%);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+footer a:hover {
+    color: var(--success);
+    transform: translateX(5px);
+    display: inline-block;
+}
+
+footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+.btn-link {
+    padding: 0.5rem 0 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.btn-link:hover {
+    color: var(--success) !important;
+    text-decoration: none;
+}
+
+/* ========================================
+   BACK TO TOP BUTTON
+   ======================================== */
+
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background: var(--success);
+    color: white;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 99;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.back-to-top:hover {
+    background: #157347;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.show {
+    display: block;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .container-xxl.py-5.bg-dark h1 {
+        font-size: 1.75rem;
+    }
+
+    #restaurant-unit h2,
+    #supermarket-unit h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-group {
+        gap: 0.25rem;
+    }
+
+    .btn-outline-success {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-footer {
+        padding: 0.75rem 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-price {
+        font-size: 1.1rem;
+    }
+
+    .chat-messages {
+        height: 200px;
+    }
+
+    footer {
+        padding: 2rem 0 1rem !important;
+    }
+
+    footer .row {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-xxl.py-5.bg-dark {
+        padding: 2rem 0 !important;
+    }
+
+    .container-xxl.py-5.bg-dark h1 {
+        font-size: 1.5rem;
+    }
+
+    .container-xxl.py-5.bg-dark p {
+        font-size: 1rem;
+    }
+
+    #restaurant-unit,
+    #supermarket-unit {
+        padding: 2rem 0;
+    }
+
+    #restaurant-unit h2,
+    #supermarket-unit h2 {
+        font-size: 1.25rem;
+    }
+
+    .btn-outline-success {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-price {
+        font-size: 1rem;
+    }
+
+    .chat-header {
+        padding: 1rem;
+    }
+
+    .chat-header h5 {
+        font-size: 0.95rem;
+    }
+
+    .chat-messages {
+        height: 150px;
+        padding: 0.75rem;
+    }
+
+    .bot-message p,
+    .user-message p {
+        max-width: 100%;
+    }
+
+    .back-to-top {
+        width: 35px;
+        height: 35px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
