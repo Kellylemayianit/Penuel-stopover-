@@ -779,4 +779,53 @@ footer .text-white-50 {
     footer h5 {
         font-size: 1.15rem;
     }
+    
+    /* ========================================
+   BACK TO TOP BUTTON
+   ======================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99998;
+    background: linear-gradient(135deg, var(--success) 0%, #157347 100%);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    padding: 0 !important;
+}
+
+.back-to-top:hover {
+    background: linear-gradient(135deg, #157347 0%, #0d3f24 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.4);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 576px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
+}
+    
 }

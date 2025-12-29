@@ -25,6 +25,7 @@
     position: relative;
     z-index: 99999;
     font-size: 28px;
+    padding: 0;
 }
 
 #penuel-chat-btn:hover {
@@ -320,7 +321,7 @@ body.penuel-chat-open {
 
     #penuel-chat-input {
         padding: 9px 12px;
-        font-size: 16px; /* Prevents auto-zoom on iOS */
+        font-size: 16px;
     }
 
     #penuel-chat-send {
@@ -339,7 +340,7 @@ body.penuel-chat-open {
     }
 }
 
-/* Print styles - hide chat widget */
+/* Print styles */
 @media print {
     #penuel-chat-container {
         display: none !important;

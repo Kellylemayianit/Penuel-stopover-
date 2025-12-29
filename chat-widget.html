@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penuel Stopover Chat Widget</title>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/chat-widget.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Chat Widget Container -->
+    <div id="penuel-chat-container">
+        <!-- Chat Toggle Button -->
+        <button id="penuel-chat-btn" title="Chat with Penuel Assistant" aria-label="Open chat">💬</button>
+        
+        <!-- Chat Window -->
+        <div id="penuel-chat-window" class="penuel-chat-hidden" role="dialog" aria-labelledby="chat-header" aria-hidden="true">
+            
+            <!-- Chat Header -->
+            <div class="penuel-chat-header" id="chat-header">
+                <span>
+                    <i class="fas fa-comments"></i>Penuel Assistant
+                </span>
+                <button id="penuel-chat-close" title="Close chat" aria-label="Close chat window">×</button>
+            </div>
+            
+            <!-- Messages Container -->
+            <div id="penuel-chat-messages" role="log" aria-live="polite" aria-label="Chat messages">
+                <div class="penuel-chat-msg penuel-chat-bot">
+                    👋 Welcome to Penuel Stopover! How can I help you today?
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="penuel-chat-input-wrapper">
+                <input 
+                    type="text" 
+                    id="penuel-chat-input" 
+                    placeholder="Ask a question..." 
+                    autocomplete="off"
+                    aria-label="Type your message here"
+                />
+                <button id="penuel-chat-send" aria-label="Send message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Penuel Stopover - Persistent Chat Widget
+         * ============================================
+         * This script is loaded by chat-widget.js from the main pages
+         */
+        
+        // The actual functionality is handled by chat-widget.js
+        // This file serves as the HTML structure that gets loaded externally
+        
+        console.log('✅ Chat Widget HTML loaded successfully');
+    </script>
+</body>
+</html>

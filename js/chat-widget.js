@@ -1,23 +1,81 @@
 /**
- * Penuel Stopover - Floating Chat Widget
+ * Penuel Stopover - Persistent Chat Widget
  * ============================================
- * Mobile-optimized chat widget with N8N integration
- * Similar to Sironosim Gardens implementation
+ * Loads external HTML and manages chat functionality
+ * Works across all pages with smooth navigation
  */
 
 (function() {
     'use strict';
 
-    // Configuration
-    var CONFIG = {
-        N8N_WEBHOOK: 'https://your-n8n-instance.com/webhook/penuel-chat',
-        API_KEY: 'your-api-key-here',
-        TIMEOUT: 30000,
-        STORAGE_KEY: 'penuel_user_id'
-    };
+    var WIDGET_HTML_PATH = '/chat-widget.html';
+    var WIDGET_CONTAINER_ID = 'penuel-chat-container';
+    var initialized = false;
 
-    // Initialize chat widget
-    function initChatWidget() {
+    /**
+     * Load external chat widget HTML
+     */
+    function loadChatWidget() {
+        // Check if already loaded
+        if (document.getElementById(WIDGET_CONTAINER_ID)) {
+            initializeChatEvents();
+            return;
+        }
+
+        // Fetch external HTML
+        fetch(WIDGET_HTML_PATH)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Failed to load chat widget');
+                }
+                return response.text();
+            })
+            .then(function(html) {
+                // Extract only the chat widget HTML (not the full page)
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, 'text/html');
+                
+                // Find chat container in the loaded HTML
+                var chatContainer = doc.getElementById(WIDGET_CONTAINER_ID);
+                
+                if (chatContainer) {
+                    // Append to body
+                    document.body.appendChild(chatContainer.cloneNode(true));
+                    
+                    // Load CSS
+                    loadChatCSS();
+                    
+                    // Initialize events
+                    setTimeout(function() {
+                        initializeChatEvents();
+                    }, 100);
+                } else {
+                    console.error('Chat widget container not found in external HTML');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error loading chat widget:', error);
+            });
+    }
+
+    /**
+     * Load chat widget CSS
+     */
+    function loadChatCSS() {
+        if (!document.querySelector('link[href*="chat-widget.css"]')) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'css/chat-widget.css';
+            document.head.appendChild(link);
+        }
+    }
+
+    /**
+     * Initialize chat events
+     */
+    function initializeChatEvents() {
+        if (initialized) return;
+
         var chatBtn = document.getElementById('penuel-chat-btn');
         var chatWindow = document.getElementById('penuel-chat-window');
         var closeBtn = document.getElementById('penuel-chat-close');
@@ -31,16 +89,11 @@
             return;
         }
 
-        // Warning for unconfigured API
-        if (CONFIG.N8N_WEBHOOK.includes('your-n8n-instance')) {
-            console.warn('⚠️ Chat widget: Configure N8N_WEBHOOK URL in chat-widget.js');
-        }
-
         /**
-         * Toggle chat window open/close
+         * Toggle chat window
          */
         function toggleChat() {
-            var isMobile = window.innerWidth <= 768;
+            var isMobile = window.innerWidth <= 480;
 
             if (chatWindow.classList.contains('penuel-chat-hidden')) {
                 // Open chat
@@ -58,7 +111,7 @@
                 // Focus input
                 setTimeout(function() {
                     input.focus();
-                }, isMobile ? 300 : 100);
+                }, 100);
 
                 scrollToBottom();
             } else {
@@ -84,7 +137,7 @@
         function scrollToBottom() {
             setTimeout(function() {
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 100);
+            }, 50);
         }
 
         /**
@@ -99,102 +152,91 @@
         }
 
         /**
-         * Show loading indicator
+         * Show typing indicator
          */
-        function showLoading() {
-            var loader = document.createElement('div');
-            loader.id = 'penuel-chat-loader';
-            loader.className = 'penuel-chat-msg penuel-chat-bot penuel-chat-typing';
-            loader.innerHTML = '<span></span><span></span><span></span>';
-            messagesContainer.appendChild(loader);
+        function showTyping() {
+            var typingDiv = document.createElement('div');
+            typingDiv.id = 'penuel-chat-typing';
+            typingDiv.className = 'penuel-chat-msg penuel-chat-bot penuel-chat-typing';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            messagesContainer.appendChild(typingDiv);
             scrollToBottom();
         }
 
         /**
-         * Remove loading indicator
+         * Hide typing indicator
          */
-        function hideLoading() {
-            var loader = document.getElementById('penuel-chat-loader');
-            if (loader && loader.parentNode) {
-                loader.parentNode.removeChild(loader);
+        function hideTyping() {
+            var typing = document.getElementById('penuel-chat-typing');
+            if (typing && typing.parentNode) {
+                typing.parentNode.removeChild(typing);
             }
         }
 
         /**
-         * Get or create user ID
+         * Get bot response
          */
-        function getUserId() {
-            try {
-                var userId = localStorage.getItem(CONFIG.STORAGE_KEY);
-                if (!userId) {
-                    userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                    localStorage.setItem(CONFIG.STORAGE_KEY, userId);
-                }
-                return userId;
-            } catch (e) {
-                return 'user_' + Date.now();
+        function getBotResponse(userMessage) {
+            var msg = userMessage.toLowerCase();
+
+            if (msg.includes('menu') || msg.includes('food') || msg.includes('eat') || msg.includes('restaurant')) {
+                return 'Check out our Restaurant Menu section! We serve authentic Kenyan and continental cuisine for breakfast, lunch, and dinner.';
             }
+
+            if (msg.includes('service') || msg.includes('car wash') || msg.includes('maintenance') || msg.includes('wash')) {
+                return 'We offer professional vehicle services including Service Bay, inspections, repairs, and premium Car Wash packages. Visit Services page!';
+            }
+
+            if (msg.includes('shop') || msg.includes('buy') || msg.includes('product') || msg.includes('supermarket')) {
+                return 'Our Supermarket has groceries, snacks, beverages, and supplies. Perfect for stocking up before your wildlife adventure!';
+            }
+
+            if (msg.includes('location') || msg.includes('where') || msg.includes('address') || msg.includes('direction')) {
+                return 'We\'re located in Kimana on Loitokitok Road. Call +254 XXX XXX XXX or visit Contact page for directions!';
+            }
+
+            if (msg.includes('hour') || msg.includes('open') || msg.includes('close')) {
+                return 'Penuel Stopover operates 24/7! Peak hours are 6:00 AM - 10:00 PM. We\'re always ready to serve you!';
+            }
+
+            if (msg.includes('book') || msg.includes('reserve') || msg.includes('appointment')) {
+                return 'You can book services through our Contact page or call +254 XXX XXX XXX. We handle requests quickly!';
+            }
+
+            var defaults = [
+                'Great question! Feel free to explore our website or contact us directly.',
+                'I\'m here to help! Browse our services - Restaurant, Supermarket, Services, or Contact us.',
+                'Thanks for your interest! Is there a specific service you\'d like to know more about?',
+                'Feel free to check our Services page or contact our team directly.'
+            ];
+
+            return defaults[Math.floor(Math.random() * defaults.length)];
         }
 
         /**
-         * Send message to N8N
+         * Send message
          */
         function sendMessage() {
-            var messageText = input.value.trim();
-            if (!messageText) return;
+            var text = input.value.trim();
+            if (!text) return;
 
-            // Show user message
-            addMessage(messageText, 'user');
+            // Add user message
+            addMessage(text, 'user');
             input.value = '';
 
-            // Refocus on mobile
-            if (window.innerWidth <= 768) {
-                input.blur();
-                setTimeout(function() {
-                    input.focus();
-                }, 100);
-            }
+            // Show typing
+            showTyping();
 
-            // Show loading
-            showLoading();
-
-            // Prepare data
-            var payload = {
-                message: messageText,
-                userId: getUserId(),
-                page: window.location.pathname,
-                timestamp: new Date().toISOString()
-            };
-
-            // Send via fetch
-            fetch(CONFIG.N8N_WEBHOOK, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': CONFIG.API_KEY
-                },
-                body: JSON.stringify(payload),
-                timeout: CONFIG.TIMEOUT
-            })
-            .then(function(response) {
-                if (!response.ok) throw new Error('Network error');
-                return response.json();
-            })
-            .then(function(data) {
-                hideLoading();
-                var reply = data.response || data.reply || data.message || 
-                           'Sorry, I could not process that. Please try again.';
-                addMessage(reply, 'bot');
-            })
-            .catch(function(error) {
-                hideLoading();
-                console.error('Chat error:', error);
-                addMessage('Unable to connect. Please try again later.', 'bot');
-            });
+            // Simulate response delay
+            setTimeout(function() {
+                hideTyping();
+                var response = getBotResponse(text);
+                addMessage(response, 'bot');
+            }, 800 + Math.random() * 700);
         }
 
         /**
-         * Event Listeners
+         * Event listeners
          */
         chatBtn.addEventListener('click', toggleChat);
         closeBtn.addEventListener('click', toggleChat);
@@ -214,17 +256,23 @@
             }
         });
 
-        console.log('✅ Penuel Chat Widget initialized');
+        initialized = true;
+        console.log('✅ Penuel Chat Widget Initialized');
     }
 
     /**
      * Initialize when DOM is ready
      */
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(initChatWidget, 100);
-        });
-    } else {
-        setTimeout(initChatWidget, 100);
+    function init() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                loadChatWidget();
+            });
+        } else {
+            loadChatWidget();
+        }
     }
+
+    // Start initialization
+    init();
 })();

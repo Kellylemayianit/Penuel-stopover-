@@ -314,32 +314,6 @@
             </div>
 
             <!-- ========================================
-             AI CHAT WIDGET SECTION
-             ======================================== -->
-            <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img
-                            src="img/chat-section.jpg"
-                            class="w-100 h-100"
-                            style="object-fit: cover"
-                            alt="Penuel Stopover Facilities" />
-                    </div>
-                    <div class="col-md-6 bg-dark d-flex align-items-center">
-                        <div class="p-5 wow fadeInUp w-100" data-wow-delay="0.2s">
-                            <h5 class="section-title ff-secondary text-start text-success fw-normal">Need Help?</h5>
-                            <h1 class="text-white mb-4">Instant Assistance</h1>
-                            <p class="text-white mb-4">
-                                Have questions about our services, pricing, or availability? Chat with our assistant in
-                                real-time. We're here 24/7 to help you plan your stopover experience.
-                            </p>
-                            <div id="ai-chat-widget"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================
              TESTIMONIALS SECTION
              ======================================== -->
             <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -496,34 +470,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow.js/1.1.2/wow.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/easing/1.4.1/easing.min.js"></script>
-
-        <!-- Template Javascript -->
-        <script src="script.js"></script>
-        <script>
-            // Initialize WOW animations
-            new WOW().init();
-        </script>
-
-        <div id="penuel-chat-container">
-            <button id="penuel-chat-btn" title="Chat with Penuel Assistant">💬</button>
-            <div id="penuel-chat-window" class="penuel-chat-hidden">
-                <div class="penuel-chat-header">
-                    <span><i class="fas fa-comments"></i>Penuel Assistant</span>
-                    <button id="penuel-chat-close">×</button>
-                </div>
-                <div id="penuel-chat-messages">
-                    <div class="penuel-chat-msg penuel-chat-bot">
-                        👋 Welcome to Penuel Stopover! How can I help you today?
-                    </div>
-                </div>
-                <div class="penuel-chat-input-wrapper">
-                    <input type="text" id="penuel-chat-input" placeholder="Ask a question..." autocomplete="off" />
-                    <button id="penuel-chat-send">Send</button>
-                </div>
-            </div>
-        </div>
-
-        <link rel="stylesheet" href="css/chat-widget.css" />
+        <!-- Chat Widget Script -->
         <script src="js/chat-widget.js"></script>
     </body>
 </html>

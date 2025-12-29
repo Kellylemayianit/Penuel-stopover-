@@ -434,3 +434,32 @@ document.addEventListener('keydown', (e) => {
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     // Future dark mode implementation
 }
+
+
+// ========================================
+// BACK TO TOP BUTTON FUNCTIONALITY
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    if (!backToTopBtn) return;
+
+    // Show/Hide back-to-top button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    // Smooth scroll to top when button is clicked
+    backToTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
